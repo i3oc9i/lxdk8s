@@ -1,0 +1,8 @@
+#!/bin/bash
+# Copyright (c) 2019 Ivano Coltellacci. All rights reserved.
+# Use of this source code is governed by the MIT License that can be found in
+# the LICENSE file.
+
+lxc start lxdk8s-lb
+lxc start lxdk8s-m0 lxdk8s-m1 lxdk8s-m2
+lxc start lxdk8s-w0 lxdk8s-w1 lxdk8s-w2

@@ -1,0 +1,24 @@
+#!/bin/bash
+# Copyright (c) 2019 Ivano Coltellacci. All rights reserved.
+# Use of this source code is governed by the MIT License that can be found in
+# the LICENSE file.
+
+echo ">>> LXDK8S machines"
+lxc list -c ns4 | grep "lxdk8s-"
+
+if [ "Running" = "$(lxc info lxdk8s-lb 2> /dev/null | grep Status | awk '{print $2}')" ]; then
+
+echo ">>> Load balancer status"
+lxc exec lxdk8s-lb -- netstat -nltp | grep haproxy
+
+fi
+
+if [ "Running" = "$(lxc info lxdk8s-m0 2> /dev/null | grep Status | awk '{print $2}')" ]; then
+
+echo ">>> Kubernetes Control Plane status"
+lxc exec lxdk8s-m0 -- kubectl get componentstatuses --kubeconfig admin.kubeconfig
+
+echo ">>> Kubernetes Nodes status"
+lxc exec lxdk8s-m0 -- kubectl get nodes --kubeconfig admin.kubeconfig
+
+fi
