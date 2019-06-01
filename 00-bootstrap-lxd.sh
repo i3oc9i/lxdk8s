@@ -9,7 +9,8 @@ source ./config/lxdk8s.config
 mkdir -p ./setup; cd ./setup
 
 LXD_BRIDGE=$(lxc profile show default | grep parent | awk  '{print $2 }')
-LXD_VOLUME=$(lxc profile show default | grep pool   | awk  '{print $2 }')
+
+lxc storage create lxdk8s-dir dir 
 
 echo ">>> Bootstrapping the Kubernetes LXD machines"
 echo "(0) Create the LXDK8S Profile for Kubernetes machines"
@@ -35,7 +36,7 @@ devices:
     type: nic
   root:
     path: /
-    pool: ${LXD_VOLUME}
+    pool: lxdk8s-dir
     type: disk
 name: lxdk8s
 used_by: []
