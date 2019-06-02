@@ -170,6 +170,7 @@ Documentation=https://github.com/kubernetes/kubernetes
 After=containerd.service
 Requires=containerd.service
 
+#add option '--fail-swap-on=false' because LXD swap setting depend on host setting
 [Service]
 ExecStart=/usr/local/bin/kubelet \\
   --config=/var/lib/kubelet/kubelet-config.yaml \\
@@ -179,7 +180,7 @@ ExecStart=/usr/local/bin/kubelet \\
   --kubeconfig=/var/lib/kubelet/kubeconfig \\
   --network-plugin=cni \\
   --register-node=true \\
-  --fail-swap-on=false \\ # LXD swap setting depend on host setting
+  --fail-swap-on=false \\
   --v=2
 Restart=on-failure
 RestartSec=5
