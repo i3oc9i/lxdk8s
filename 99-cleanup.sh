@@ -9,7 +9,7 @@ rm -f ./bin/lxdk8s.kubectl
 rm -f ./bin/lxdk8s.net
 
 echo "(1) Remove all generated and downloaded files frome ./setup directory"
-rm -rf ./setup/*.{yaml,cfg,conf,csr,pem,json,kubeconfig,service}
+rm -rf ./setup/*.{yaml,cfg,conf,csr,pem,toml,json,kubeconfig,service}
 #rm -rf ./setup
 
 echo "(2) Stop all the LXDK8S machines"
