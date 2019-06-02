@@ -232,7 +232,7 @@ lxc file push admin.kubeconfig ${instance}/root/
 done
 
 sleep 15
-echo "(-) Verifing the worker deployment"
+echo "(-) Verify the worker deployment"
 lxc exec lxdk8s-m0 -- kubectl get nodes --kubeconfig admin.kubeconfig
 
 
