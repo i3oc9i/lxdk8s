@@ -91,7 +91,7 @@ echo "(3) Generate the kube-scheduler Kubernetes configuration file"
 
 ./kubectl config use-context default --kubeconfig=kube-scheduler.kubeconfig
 
-echo "(4) Generate the admin Kubernetes configuration file"
+echo "(4) Generate the admin Kubernetes configuration file for cluster"
 ./kubectl config set-cluster lxdk8s \
   --certificate-authority=ca.pem \
   --embed-certs=true \
@@ -111,3 +111,22 @@ echo "(4) Generate the admin Kubernetes configuration file"
 
 ./kubectl config use-context default --kubeconfig=admin.kubeconfig
 
+echo "(5) Generate the admin Kubernetes configuration file for local machine"
+./kubectl config set-cluster lxdk8s \
+  --certificate-authority=ca.pem \
+  --embed-certs=true \
+  --server=https://${LXDK8S_PUBLIC_ADDR}:6443 \
+  --kubeconfig=lxdk8s.kubeconfig
+
+./kubectl config set-credentials admin \
+  --client-certificate=admin.pem \
+  --client-key=admin-key.pem \
+  --embed-certs=true \
+  --kubeconfig=lxdk8s.kubeconfig
+
+./kubectl config set-context default \
+  --cluster=lxdk8s \
+  --user=admin \
+  --kubeconfig=lxdk8s.kubeconfig
+
+./kubectl config use-context default --kubeconfig=lxdk8s.kubeconfig
