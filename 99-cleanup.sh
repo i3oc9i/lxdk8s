@@ -4,8 +4,9 @@
 # the LICENSE file.
 
 echo ">>> Cleaning Up LXDK8S Deployment"
-echo "(0) Remove lxdk8s.kubectl in ./bin"
+echo "(0) Remove lxdk8s.kubectl and lxdk8s.net in ./bin"
 rm -f ./bin/lxdk8s.kubectl
+rm -f ./bin/lxdk8s.net
 
 echo "(1) Remove all generated and downloaded files frome ./setup directory"
 rm -rf ./setup/*.{yaml,cfg,conf,csr,pem,json,kubeconfig,service}
