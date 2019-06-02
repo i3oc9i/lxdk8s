@@ -11,10 +11,8 @@ mkdir -p ./setup; cd setup
 echo "(-) Download the Kubernetes Worker Node binaries"
 # hack the file name schema change in the CNI versions
 wget -q --show-progress --https-only --continue \
-  https://github.com/containernetworking/plugins/releases/download/${CNI_VER}/cni-plugins-{linux-,}amd64-${CNI_VER}.tgz || true
-
-wget -q --show-progress --https-only --continue \
   https://github.com/containerd/containerd/releases/download/v${CONTAINERD_VER}/containerd-${CONTAINERD_VER}.linux-amd64.tar.gz \
+  https://github.com/containernetworking/plugins/releases/download/${CNI_VER}/cni-plugins-linux-amd64-${CNI_VER}.tgz \
   https://github.com/kubernetes-sigs/cri-tools/releases/download/${CRI_VER}/crictl-${CRI_VER}-linux-amd64.tar.gz \
   https://github.com/opencontainers/runc/releases/download/${RUNC_VER}/runc.amd64 \
   https://storage.googleapis.com/gvisor/releases/nightly/${GVISOR_VER}/runsc \
@@ -55,7 +53,7 @@ lxc exec ${instance} --  mkdir -p /etc/cni/net.d \
 lxc file push  runc runsc kube-proxy kubelet kubectl ${instance}/usr/local/bin/
 
 cat containerd-${CONTAINERD_VER}.linux-amd64.tar.gz | lxc exec ${instance} -- tar xzf - -C /
-cat cni-plugins-{linux-,}amd64-${CNI_VER}.tgz  | lxc exec ${instance} -- tar xzf - -C /opt/cni/bin/
+cat cni-plugins-linux-amd64-${CNI_VER}.tgz  | lxc exec ${instance} -- tar xzf - -C /opt/cni/bin/
 cat crictl-${CRI_VER}-linux-amd64.tar.gz | lxc exec ${instance} -- tar xzf - -C /usr/local/bin/
 
 echo "(2) Configure CNI Networking of ${instance}"
