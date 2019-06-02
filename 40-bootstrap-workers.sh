@@ -118,7 +118,7 @@ Documentation=https://containerd.io
 After=network.target
 
 [Service]
-#ExecStartPre=/sbin/modprobe overlay
+#ExecStartPre=/sbin/modprobe overlay -- LXD does not support overlay
 ExecStart=/bin/containerd
 Restart=always
 RestartSec=5
@@ -181,6 +181,7 @@ ExecStart=/usr/local/bin/kubelet \\
   --kubeconfig=/var/lib/kubelet/kubeconfig \\
   --network-plugin=cni \\
   --register-node=true \\
+  --fail-swap-on=false \\ # LXD swap setting depend on host setting
   --v=2
 Restart=on-failure
 RestartSec=5
