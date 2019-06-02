@@ -14,4 +14,5 @@ set -eu
 ./31-bootstrap-control-plane.sh
 ./32-setup-rbac-kubelet.sh
 ./40-bootstrap-workers.sh
+./50-create-network-routes.sh
 

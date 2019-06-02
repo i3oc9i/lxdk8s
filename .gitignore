@@ -1,4 +1,6 @@
 setup
 
 bin/lxdk8s.kubectl
+bin/lxdk8s.net
+
 
