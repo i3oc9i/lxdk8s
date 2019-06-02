@@ -1,7 +1,9 @@
-#-- LXDK8S Proxy Config file
+#!/bin/bash
 # Copyright (c) 2019 Ivano Coltellacci. All rights reserved.
 # Use of this source code is governed by the MIT License that can be found in
 # the LICENSE file.
+
+#-- LXDK8S Proxy Config file
 
 # use the ${proxy} value if set in the environment
 PROXY_SRV=${proxy:-"noproxy"} 

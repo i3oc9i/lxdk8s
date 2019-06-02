@@ -1,0 +1,16 @@
+// Copyright (c) 2019 Ivano Coltellacci. All rights reserved.
+// Use of this source code is governed by the MIT License that can be found in
+// the LICENSE file.
+
+{
+    "files.exclude": {
+        "**/.git": true,
+    },
+    
+    "files.associations": {
+        "**/config/*": "shellscript",
+    },
+
+    "shellcheck.exclude": [2034,1091, 2086, 2002],
+    "shellcheck.customArgs": ["-x"]   
+}
