@@ -6,7 +6,7 @@
 #-- LXDK8S Proxy Config file
 
 # use the ${proxy} value if set in the environment
-PROXY_SRV=${proxy:-"noproxy"} 
+PROXY_SRV=${http_proxy:-"noproxy"} 
 
 # proxy used by LXD to retrive images
 LXD_PROXY=${PROXY_SRV} 
