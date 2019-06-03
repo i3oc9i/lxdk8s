@@ -17,7 +17,7 @@ echo "--- At each watch screen wait for the Pod state RUNNING before to continue
 read -n 1 -p "--- press ENTER to star th test ..."
 watch lxc exec lxdk8s-m0 -- kubectl --kubeconfig admin.kubeconfig get pods -l k8s-app=kube-dns -n kube-system
 
-lxc exec lxdk8s-m0 -- kubectl --kubeconfig admin.kubeconfig run coredns-test --image busybox --command -- sleep 3600
+lxc exec lxdk8s-m0 -- kubectl --kubeconfig admin.kubeconfig run coredns-test --image busybox:1.28 --command -- sleep 3600
 watch lxc exec lxdk8s-m0 -- kubectl --kubeconfig admin.kubeconfig get pods -l run=coredns-test
 
 POD_NAME=$(lxc exec lxdk8s-m0 -- kubectl --kubeconfig admin.kubeconfig get pods -l run=coredns-test -o jsonpath="{.items[0].metadata.name}")
