@@ -211,7 +211,7 @@ EOF
   -ca=ca.pem \
   -ca-key=ca-key.pem \
   -config=ca-config.json \
-  -hostname=${M0_IP},${M1_IP},${M2_IP},${LXDK8S_PUBLIC_ADDR},127.0.0.1,kubernetes.default \
+  -hostname=10.32.0.1,${M0_IP},${M1_IP},${M2_IP},${LXDK8S_PUBLIC_ADDR},127.0.0.1,kubernetes.default \
   -profile=kubernetes \
   kubernetes-csr.json | ./cfssljson -bare kubernetes
 
