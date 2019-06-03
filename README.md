@@ -146,7 +146,7 @@ To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
 
 ## Install Addons
 
-#### CoreDNS (Expiremental)
+#### CoreDNS
 Use the following command to deploy CoreDNS.
 ```
 $ ./addon/deploy-coredns.sh
