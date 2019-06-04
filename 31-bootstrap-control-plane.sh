@@ -151,9 +151,9 @@ lxc file push admin.kubeconfig ${instance}/root/
 
 done
 
-sleep 15
 echo "(-) Verify the Kubernetes Version"
-curl --cacert ca.pem https://${LXDK8S_PUBLIC_ADDR}:6443/version
+sleep 15
+curl --cacert ca.pem --noproxy ${LXDK8S_PUBLIC_ADDR} https://${LXDK8S_PUBLIC_ADDR}:6443/version
 
 echo "(-) Verify the Kubernetes Control Plane deployment"
 lxc exec lxdk8s-m0 -- kubectl get componentstatuses --kubeconfig admin.kubeconfig

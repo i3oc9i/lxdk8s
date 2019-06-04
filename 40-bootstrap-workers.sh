@@ -126,6 +126,7 @@ OOMScoreAdjust=-999
 LimitNOFILE=1048576
 LimitNPROC=infinity
 LimitCORE=infinity
+Environment="HTTP_PROXY=${CONTAINERD_PROXY}"
 
 [Install]
 WantedBy=multi-user.target
@@ -232,8 +233,8 @@ lxc file push admin.kubeconfig ${instance}/root/
 
 done
 
-sleep 15
 echo "(-) Verify the worker deployment"
+sleep 15
 lxc exec lxdk8s-m0 -- kubectl get nodes --kubeconfig admin.kubeconfig
 
 

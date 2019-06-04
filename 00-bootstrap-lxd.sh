@@ -65,6 +65,6 @@ lxc launch ubuntu:${UBUNTU_VER} lxdk8s-w2 --profile lxdk8s
 echo "(3) Create the Kubernetes Load Balancer"
 lxc launch ubuntu:${UBUNTU_VER} lxdk8s-lb
 
-sleep 15
 echo "(-) Verify the LXDK8S machines"
+sleep 15
 lxc list -c ns4 | grep "lxdk8s-"

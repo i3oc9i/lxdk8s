@@ -65,13 +65,21 @@ You can safely accept the default values.
 ```
 $ sudo lxd init
 ```
+#### 3. Proxy case
+If your local machine is behind a proxy, make sure to set the `http_proxy` environment varibale properly before to start the installation process.
+
+```
+export http_proxy=http://<login>:<password>@<your.proxy.url>:3128/
+```
+
+LXDK8S takes care of this variable to set accordingly the proxy for LXD, APT, and CONTAINERD respectively. (see the `./config/lxdk8s.proxy` file)
 
 ## Installation
 #### 1. Clone the repositorty
 ```
-$ git clone https://github.com/i3oc9i/lxdk8s.git ~/lxdk8s
+$ git clone https://github.com/i3oc9i/lxdk8s.git
 
-$ cd ~/lxdk8s
+$ cd ./lxdk8s
 ```
 
 #### 2. Bootstrap the cluster
@@ -179,6 +187,7 @@ To retrive the status of the LXDK8S cluster.
 ```
 $ ./bin/lxdk8s.status
 >>> LXDK8S machines
+
 | lxdk8s-lb | RUNNING | 10.234.143.198 (eth0) |
 | lxdk8s-m0 | RUNNING | 10.234.143.49 (eth0)  |
 | lxdk8s-m1 | RUNNING | 10.234.143.190 (eth0) |
@@ -223,8 +232,19 @@ To control the cluster.
 ```
 $ ./bin/lxdk8s.kubectl --kubeconfig ./setup/lxdk8s.kubeconfig get all --all-namespaces
 
-NAMESPACE   NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE
-default     service/kubernetes   ClusterIP   10.32.0.1    <none>        443/TCP   116m
+NAMESPACE     NAME                          READY   STATUS    RESTARTS   AGE
+kube-system   pod/coredns-b4c55b465-nsdfm   1/1     Running   0          13m
+kube-system   pod/coredns-b4c55b465-q8m2m   1/1     Running   0          13m
+
+NAMESPACE     NAME                 TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)                  AGE
+default       service/kubernetes   ClusterIP   10.32.0.1    <none>        443/TCP                  39m
+kube-system   service/kube-dns     ClusterIP   10.32.0.10   <none>        53/UDP,53/TCP,9153/TCP   13m
+
+NAMESPACE     NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+kube-system   deployment.apps/coredns   2/2     2            2           13m
+
+NAMESPACE     NAME                                DESIRED   CURRENT   READY   AGE
+kube-system   replicaset.apps/coredns-b4c55b465   2         2         2       13m
 ```
 
 ## Clean UP

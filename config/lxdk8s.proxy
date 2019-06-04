@@ -13,3 +13,6 @@ LXD_PROXY=${PROXY_SRV}
 
 # proxy used by UBUNTU APT in the lxdk8s machines
 APT_PROXY=${PROXY_SRV} 
+
+# proxy used by Containerd in the lxdk8s-w(x) machines
+CONTAINERD_PROXY=${PROXY_SRV}
