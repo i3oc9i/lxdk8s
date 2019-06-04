@@ -1,7 +1,7 @@
 # LXDK8S - Kubernetes on LXD 
 LXDK8S is a work inspired and adapted after the labs `Kubernetes The Hard Way` of [Kelsey Hightower](https://github.com/kelseyhightower/kubernetes-the-hard-way) .
 
-As the the original labs, the purpose of this work is to provide a playground to learn Kubernetes. Instead to use the Google Cloud Platform, LXDK8S runs on top of the UBUNTU/LXD infrastucture of your local machine.
+As the original labs, the purpose of this work is to provide a playground to learn Kubernetes. Instead to use the Google Cloud Platform, LXDK8S runs on top of the UBUNTU/LXD infrastucture of your local machine.
 
 All the orginal **Kubernetes The Hard Way** labs have been adapted to fit with the LXC commands and the limitations of a local machine. For speed up the installation process, the labs have been fully automatized using BASH scripts. Indeed, the organization of these scripts follows the sequence of the orginal labs of **Kelsey Hightower**, so please refer to his [documenation](https://github.com/kelseyhightower/kubernetes-the-hard-way/tree/master/docs) for understanding.
 
