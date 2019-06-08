@@ -109,6 +109,12 @@ EOF
 
 lxc file push ${instance}-containerd-config.toml  ${instance}/etc/containerd/config.toml
 
+if [ ${CONTAINERD_PROXY} != "noproxy" ]; then
+Environment_HTTP_PROXY=$(echo Environment="HTTP_PROXY=${CONTAINERD_PROXY}")
+else
+Environment_HTTP_PROXY=""
+fi
+
 cat > ${instance}-containerd.service <<EOF
 [Unit]
 Description=containerd container runtime
@@ -126,7 +132,7 @@ OOMScoreAdjust=-999
 LimitNOFILE=1048576
 LimitNPROC=infinity
 LimitCORE=infinity
-Environment="HTTP_PROXY=${CONTAINERD_PROXY}"
+${Environment_HTTP_PROXY}
 
 [Install]
 WantedBy=multi-user.target
